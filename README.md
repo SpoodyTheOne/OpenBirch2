@@ -9,8 +9,8 @@ Functions: PascalCase
 * Methods: camelCase
 
 Variables: camelCase
-* member variables: Prefixed with "m_" (Part of Hungarian notation)
-* static variables: PascalCase
+* Member variables: m_PascalCase: Prefixed with "m_" (Part of Hungarian notation)
+* Static variables: PascalCase
 
 Classes & Structs: PascalCase
 
