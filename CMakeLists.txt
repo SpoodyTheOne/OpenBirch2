@@ -13,4 +13,6 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 qt_standard_project_setup()
 
 add_subdirectory(src/app)
+add_subdirectory(src/app/CAS)
+add_subdirectory(src/app/CAS/BirchCAS)
 add_subdirectory(src/gui)

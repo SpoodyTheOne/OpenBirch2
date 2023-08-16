@@ -4,14 +4,14 @@ Can compile to PDF and LaTeX (TODO)
 
 # Code of Conduct
 
-## naming convention
-functions: PascalCase
+## Naming convention
+Functions: PascalCase
     - Methods: camelCase
 
-variables: camelCase
+Variables: camelCase
     - member variables: Prefixed with "m_" (Part of Hungarian notation)
     - static variables: PascalCase
 
-classes & structs: PascalCase
+Classes & Structs: PascalCase
 
-enum & constants: ALL_CAPS
+Enums & Constants: ALL_CAPS with an underscore seperating words

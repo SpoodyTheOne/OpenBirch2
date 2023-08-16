@@ -4,7 +4,7 @@
 #include <QApplication>
 
 int main(int argc, char **argv) {
-  printf("%s, v%s", PROJECT_NAME, PROJECT_VERSION);
+  printf("%s, v%s\n", PROJECT_NAME, PROJECT_VERSION);
 
   QApplication a(argc, argv);
 
