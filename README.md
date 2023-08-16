@@ -6,11 +6,11 @@ Can compile to PDF and LaTeX (TODO)
 
 ## Naming convention
 Functions: PascalCase
-    - Methods: camelCase
+* Methods: camelCase
 
 Variables: camelCase
-    - member variables: Prefixed with "m_" (Part of Hungarian notation)
-    - static variables: PascalCase
+* member variables: Prefixed with "m_" (Part of Hungarian notation)
+* static variables: PascalCase
 
 Classes & Structs: PascalCase
 
