@@ -8,7 +8,7 @@ struct ASTNode {
   ASTNode *m_Parent;
   std::vector<ASTNode *> m_Children;
 
-  // TODO: Implement ASTVisitor class
+  /// \todo Implement ASTVisitor class
   void visit() { throw std::logic_error("Not yet implemented"); };
 };
 

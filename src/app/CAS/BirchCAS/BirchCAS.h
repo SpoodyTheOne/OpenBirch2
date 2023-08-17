@@ -5,6 +5,8 @@
 #include "AST.h"
 #include <map>
 
+namespace BirchCas {
+
 class BirchCas : CAS {
 public:
   BirchCas();
@@ -37,5 +39,6 @@ private:
    */
   std::map<QString, AST *> m_ASTs;
 };
+} // namespace BirchCas
 
 #endif
