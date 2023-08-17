@@ -1,0 +1,3 @@
+[submodule "src/birch-lang"]
+	path = src/birch-lang
+	url = git@github.com:SpoodyTheOne/birch-lang.git
