@@ -9,9 +9,9 @@ BirchCas::BirchCas() {
 
 CAS_ERROR BirchCas::parse(QString input, QString &output) {
 
-  Lexer *lexer = new Lexer(input);
+  // Lexer *lexer = new Lexer(input);
 
-  std::vector<std::shared_ptr<Token>> tokens = lexer->tokenize();
+  // std::vector<std::shared_ptr<Token>> tokens = lexer->tokenize();
 
   output = "Not Implemented :P";
   return CAS_ERROR::None;

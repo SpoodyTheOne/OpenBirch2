@@ -1,12 +1,10 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include "tokentypes.h"
+#include "token.h"
 #include <QString>
 
 namespace BirchCas {
-
-struct Token {};
 
 class Lexer {
 public:
