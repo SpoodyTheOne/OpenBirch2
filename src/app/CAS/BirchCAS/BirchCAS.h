@@ -28,7 +28,7 @@ private:
 
   /** @brief Simplifies the AST until it cant be simplified any more
    * @param input: the AST to simplify
-   * @returns AST*: The cannonical form of the input
+   * @returns AST*: The cannonical form of the \p input
    */
   AST *totalSimplifyAST(const AST &input);
 

@@ -3,8 +3,14 @@
 
 #include "AST_Node.h"
 
+/** @brief Abstract Syntax Tree, (one of) the internal representation(s) of
+ * expressions and polynomials
+ */
 struct AST {
-  ASTNode* m_Root;
+  /**
+   * The root of the tree
+   */
+  ASTNode *m_Root;
 };
 
 #endif
