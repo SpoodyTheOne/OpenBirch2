@@ -1,9 +1,0 @@
-name: Doxygen Action
-  uses: mattnotmitt/doxygen-action@1.9.5
-  with:
-    doxyfile-path: # default is ./Doxyfile
-on:
-  push:
-    branches:
-    - main
-    - release/*
