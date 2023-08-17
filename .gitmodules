@@ -1,3 +1,6 @@
 [submodule "src/birch-lang"]
 	path = src/birch-lang
 	url = git@github.com:SpoodyTheOne/birch-lang.git
+[submodule "doxygen-awesome-css"]
+	path = doxygen-awesome-css
+	url = git@github.com:jothepro/doxygen-awesome-css.git

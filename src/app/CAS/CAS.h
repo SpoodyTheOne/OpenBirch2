@@ -9,7 +9,14 @@ class CAS {
 public:
   // TODO: Add dependency injected "Worksheet"/"Document" interface that is used
   // for output
-  virtual CAS_ERROR Parse(QString input, QString &output) = 0;
+
+  /** 
+  * @brief Parses a string input given by the user
+  * @param input: The string to parse
+  * @param output: The result of the input string
+  * @returns CAS_ERROR: If no problems occur, CAS_ERROR::None is returned
+  */
+  virtual CAS_ERROR parse(QString input, QString &output) = 0;
 };
 
 #endif
