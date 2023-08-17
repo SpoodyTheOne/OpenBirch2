@@ -7,8 +7,8 @@ clean:
 	mkdir build
 	cmake -S . -B build
 
+documentation: git-update
+	doxygen Doxyfile
+	
 git-update:
 	git submodule update --init --recursive
-
-documentation:
-	doxygen Doxyfile
