@@ -3,13 +3,13 @@
 
 struct Polynomial;
 
-union CO {
+union CoefficientOrPointer {
   double value;
   Polynomial* pointer;
 };
 
 struct PolyPart {
-  CO coefficient;
+  CoefficientOrPointer coefficient;
   int exponent;
   bool recursive = false;
 };
