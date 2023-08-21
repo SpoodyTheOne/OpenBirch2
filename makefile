@@ -11,4 +11,8 @@ documentation: git-update
 	doxygen Doxyfile
 	
 git-update:
+	git submodule sync
 	git submodule update --init --recursive
+
+bear: git-update clean 
+	bear -- make
