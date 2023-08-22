@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "document.h"
 #include "ui_mainwindow.h"
 
 #include <QTabWidget>
@@ -27,7 +28,7 @@ void MainWindow::tabClose(int tab) {
 }
 
 void MainWindow::onActionTriggered(QAction *action) {
-  
+
   printf("Action triggered: %s \"%s\"\n",
          action->parent()->objectName().toStdString().c_str(),
          action->objectName().toStdString().c_str());
@@ -35,4 +36,5 @@ void MainWindow::onActionTriggered(QAction *action) {
 
 void MainWindow::newTab() {
   printf("New tab\n");
+  ui->tabWidget->addTab(new Document(), "New Document*");
 }
