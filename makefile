@@ -5,7 +5,7 @@ all: git-update
 clean:
 	rm -rf build
 	mkdir build
-	cmake -S . -B build
+	cmake -G Ninja -S . -B build
 
 documentation: git-update
 	doxygen Doxyfile

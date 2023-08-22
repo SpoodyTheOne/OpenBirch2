@@ -18,8 +18,12 @@ public:
   void tabClose(int tab);
   void onActionTriggered(QAction *action);
 
+public slots:
+  void newTab();
+
 private:
   Ui::MainWindow *ui{};
+  // BirchCas
 };
 
 #endif

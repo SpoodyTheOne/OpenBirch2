@@ -1,6 +1,10 @@
 qt_add_library(Gui STATIC
     mainwindow.ui
     mainwindow.cpp
+
+    document.ui
+    document.cpp
+    document.h
 )
 
 target_link_libraries(Gui PRIVATE Qt6::Widgets)

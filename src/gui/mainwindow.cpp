@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QTabWidget>
+#include <qpushbutton.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -26,5 +27,12 @@ void MainWindow::tabClose(int tab) {
 }
 
 void MainWindow::onActionTriggered(QAction *action) {
-  printf("Action triggered: \"%s\"\n", action->text().toStdString().c_str());
+  
+  printf("Action triggered: %s \"%s\"\n",
+         action->parent()->objectName().toStdString().c_str(),
+         action->objectName().toStdString().c_str());
+}
+
+void MainWindow::newTab() {
+  printf("New tab\n");
 }
