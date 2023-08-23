@@ -34,7 +34,39 @@ void MainWindow::onActionTriggered(QAction *action) {
          action->objectName().toStdString().c_str());
 }
 
-void MainWindow::newTab() {
+void MainWindow::tabCloseRequested(int index) {
+  printf("fuck uck ufunfiun;\n");
+}
+
+/**
+ * @brief Creates a new tab and focuses it
+ * @param #name: The name of the new tab
+ */
+void MainWindow::newTab(QString name, QWidget *widget) {
   printf("New tab\n");
-  ui->tabWidget->addTab(new Document(), "New Document*");
+  int idx = ui->tabWidget->addTab(widget, name);
+  // Focus new tab
+  ui->tabWidget->setCurrentIndex(idx);
+}
+
+/**
+ * @brief Creates a new document in a tab
+ */
+void MainWindow::newDocument() {
+  Document *newDocument = new Document();
+
+  this->newTab(newDocument->getName(), newDocument);
+}
+
+/**
+ * @brief Closes the currently selected tab
+ */
+void MainWindow::closeCurrentTab() {
+  QWidget *currentWidget = ui->tabWidget->currentWidget();
+  bool success = currentWidget->close();
+
+  if (success) {
+    ui->tabWidget->removeTab(ui->tabWidget->currentIndex());
+    delete currentWidget;
+  }
 }

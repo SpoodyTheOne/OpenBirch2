@@ -48,7 +48,7 @@
        <bool>true</bool>
       </property>
       <property name="tabsClosable">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="movable">
        <bool>true</bool>
@@ -116,6 +116,7 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>View</string>
     </property>
+    <addaction name="actionClose_Tab"/>
    </widget>
    <widget class="QMenu" name="menuInsert">
     <property name="title">
@@ -206,6 +207,14 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+N</string>
    </property>
   </action>
+  <action name="actionClose_Tab">
+   <property name="text">
+    <string>Close Tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>
@@ -213,7 +222,7 @@ p, li { white-space: pre-wrap; }
    <sender>actionNew</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>newTab()</slot>
+   <slot>newDocument()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -225,8 +234,43 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionClose_Tab</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>closeCurrentTab()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>tabCloseRequested(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>tabCloseRequested(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>305</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <slot>newTab()</slot>
+  <slot>newTab(QString,QWidget*)</slot>
+  <slot>newDocument()</slot>
+  <slot>closeCurrentTab()</slot>
+  <slot>tabCloseRequested(int)</slot>
  </slots>
 </ui>

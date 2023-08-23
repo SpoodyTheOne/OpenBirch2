@@ -2,6 +2,7 @@
 #define DOCUMENT_H
 
 #include <QWidget>
+#include <QMessageBox>
 
 namespace Ui {
 class Document;
@@ -14,8 +15,18 @@ public:
   explicit Document(QWidget *parent = nullptr);
   ~Document();
 
+  void closeEvent(QCloseEvent *event) override;
+  bool unsavedChanges();
+
+  bool close();
+  bool save();
+
+  QString getName();
+
 private:
   Ui::Document *ui{};
+  QString m_DocumentName = "Untitled Document";
+  bool m_UnsavedChanged = true;
   // BirchCas
 };
 

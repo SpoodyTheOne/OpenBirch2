@@ -5,6 +5,11 @@ qt_add_library(Gui STATIC
     document.ui
     document.cpp
     document.h
+
+    
+    documentline.ui
+    documentline.cpp
+    documentline.h
 )
 
 target_link_libraries(Gui PRIVATE Qt6::Widgets)

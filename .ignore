@@ -1,3 +1,4 @@
 build/
 docs/
 doxygen-awesome-css/
+cmake_install.cmake

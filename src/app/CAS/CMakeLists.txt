@@ -1,4 +1,4 @@
-qt_add_library(CAS STATIC
+qt_add_library(CAS SHARED
   CAS.h
 )
 

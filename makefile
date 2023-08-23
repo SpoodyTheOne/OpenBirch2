@@ -2,6 +2,9 @@ all: git-update
 	cmake --build build -j12
 	build/src/app/OpenBirch2
 
+windows:
+	cmake --build build -j12
+
 clean:
 	rm -rf build
 	mkdir build

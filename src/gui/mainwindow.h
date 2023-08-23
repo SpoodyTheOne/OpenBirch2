@@ -19,7 +19,10 @@ public:
   void onActionTriggered(QAction *action);
 
 public slots:
-  void newTab();
+  void newTab(QString name = "New Tab", QWidget* widget = nullptr);
+  void newDocument();
+  void closeCurrentTab();
+  void tabCloseRequested(int index);
 
 private:
   Ui::MainWindow *ui{};
