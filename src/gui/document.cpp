@@ -12,8 +12,8 @@ Document::Document(QWidget *parent) : QWidget(parent), ui(new Ui::Document) {
 Document::~Document() { printf("Closed documentus :c\n"); };
 
 void Document::closeEvent(QCloseEvent *event) {
+  bool shouldClose = this->closeDocument();
 
-  bool shouldClose = this->close();
   if (!shouldClose)
     event->ignore();
   else
@@ -89,7 +89,10 @@ bool Document::save() {
  * changes
  * @return int: returns the button that was clicked in the dialog
  */
-bool Document::close() {
+bool Document::closeDocument() {
+
+  printf("OOh, i have to close :3\n");
+  
   if (!unsavedChanges()) // if we dont have any unsaved changes just close
   {
     delete this;

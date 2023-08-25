@@ -18,11 +18,12 @@ public:
   void tabClose(int tab);
   void onActionTriggered(QAction *action);
 
+  void closeEvent(QCloseEvent *event) override;
+
 public slots:
-  void newTab(QString name = "New Tab", QWidget* widget = nullptr);
+  void newTab(QString name = "New Tab", QWidget *widget = nullptr);
   void newDocument();
   void closeCurrentTab();
-  void tabCloseRequested(int index);
 
 private:
   Ui::MainWindow *ui{};

@@ -2,7 +2,10 @@ all: git-update
 	cmake --build build -j12
 	build/src/app/OpenBirch2
 
-windows:
+gdb: build
+	gdb -ex run build/src/app/OpenBirch2 -q
+
+build:
 	cmake --build build -j12
 
 clean:

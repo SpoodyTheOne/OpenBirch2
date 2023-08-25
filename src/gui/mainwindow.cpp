@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   connect(tabs, &QTabWidget::tabCloseRequested, this, &MainWindow::tabClose);
   connect(menuBar, &QMenuBar::triggered, this, &MainWindow::onActionTriggered);
+
+  newDocument();
 }
 
 MainWindow::~MainWindow() {
@@ -22,9 +24,19 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::tabClose(int tab) {
-  printf("Closed tab %d\n", tab);
+  QWidget *currentWidget = ui->tabWidget->widget(tab);
 
-  ui->tabWidget->removeTab(tab);
+  if (currentWidget == nullptr) {
+    printf("Tried to close invalid tab %d\n", tab);
+    return;
+  }
+
+  bool success = currentWidget->close();
+
+  if (success) {
+    ui->tabWidget->removeTab(tab);
+    delete currentWidget;
+  }
 }
 
 void MainWindow::onActionTriggered(QAction *action) {
@@ -32,10 +44,6 @@ void MainWindow::onActionTriggered(QAction *action) {
   printf("Action triggered: %s \"%s\"\n",
          action->parent()->objectName().toStdString().c_str(),
          action->objectName().toStdString().c_str());
-}
-
-void MainWindow::tabCloseRequested(int index) {
-  printf("fuck uck ufunfiun;\n");
 }
 
 /**
@@ -61,12 +69,6 @@ void MainWindow::newDocument() {
 /**
  * @brief Closes the currently selected tab
  */
-void MainWindow::closeCurrentTab() {
-  QWidget *currentWidget = ui->tabWidget->currentWidget();
-  bool success = currentWidget->close();
+void MainWindow::closeCurrentTab() { tabClose(ui->tabWidget->currentIndex()); }
 
-  if (success) {
-    ui->tabWidget->removeTab(ui->tabWidget->currentIndex());
-    delete currentWidget;
-  }
-}
+void MainWindow::closeEvent(QCloseEvent *event) {}

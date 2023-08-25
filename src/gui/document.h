@@ -18,7 +18,7 @@ public:
   void closeEvent(QCloseEvent *event) override;
   bool unsavedChanges();
 
-  bool close();
+  bool closeDocument();
   bool save();
 
   QString getName();
