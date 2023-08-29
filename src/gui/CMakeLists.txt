@@ -10,6 +10,7 @@ qt_add_library(Gui STATIC
     documentline.cpp
     documentline.h
 
+    documentsegment.cpp
     documentsegment.h
     textsegment.cpp
     
