@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 
 #include <QTabWidget>
+#include <qevent.h>
 #include <qpushbutton.h>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -71,4 +72,21 @@ void MainWindow::newDocument() {
  */
 void MainWindow::closeCurrentTab() { tabClose(ui->tabWidget->currentIndex()); }
 
-void MainWindow::closeEvent(QCloseEvent *event) {}
+void MainWindow::closeEvent(QCloseEvent *event) {
+
+  for (;;) {
+    Document *tab = (Document *)ui->tabWidget->widget(0);
+
+    if (tab == nullptr)
+      break;
+
+    if (tab->closeDocument() == false) {
+      event->ignore();
+      break;
+    } else {
+      tabClose(0);
+    }
+  }
+
+  event->accept();
+}

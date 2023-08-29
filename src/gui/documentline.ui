@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>documentline</class>
- <widget class="QWidget" name="documentline">
+ <class>DocumentLine</class>
+ <widget class="QWidget" name="DocumentLine">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>27</height>
+    <height>36</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="TextSegment" name="lineEdit_2"/>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextSegment</class>
+   <extends>QLineEdit</extends>
+   <header>textsegment.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

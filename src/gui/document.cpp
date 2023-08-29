@@ -1,12 +1,18 @@
 #include "document.h"
+#include "documentline.h"
 #include "ui_document.h"
 #include <QCloseEvent>
 #include <QFile>
 #include <QFileDialog>
 #include <QTabWidget>
+#include <QVBoxLayout>
 
 Document::Document(QWidget *parent) : QWidget(parent), ui(new Ui::Document) {
   ui->setupUi(this);
+
+  auto widget = ui->scrollAreaWidgetContents;
+
+  ((QVBoxLayout *)widget->layout())->insertWidget(0, new DocumentLine(widget));
 }
 
 Document::~Document() { printf("Closed documentus :c\n"); };
@@ -92,7 +98,7 @@ bool Document::save() {
 bool Document::closeDocument() {
 
   printf("OOh, i have to close :3\n");
-  
+
   if (!unsavedChanges()) // if we dont have any unsaved changes just close
   {
     delete this;
@@ -101,7 +107,8 @@ bool Document::closeDocument() {
 
   QMessageBox msgBox;
   msgBox.setWindowTitle("Unsaved Changes");
-  msgBox.setText("This document contains unsaved changes.\nAre you sure you want to close it?");
+  msgBox.setText("This document contains unsaved changes.\nAre you sure you "
+                 "want to close it?");
   msgBox.setStandardButtons(QMessageBox::Discard);
   msgBox.addButton(QMessageBox::Save);
   msgBox.addButton(QMessageBox::Cancel);
