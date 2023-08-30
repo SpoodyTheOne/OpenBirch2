@@ -6,7 +6,14 @@
 #include <qobjectdefs.h>
 #include <vector>
 
-enum SegmentType { TEXT, MATH, INVALID };
+enum SegmentType {
+  /// Indicates a segment for typing plain/rich text into
+  TEXT,
+  /// A segment that can be evaluated by the parser
+  MATH,
+  /// A segment that is invalid and isnt meant to be used
+  INVALID
+};
 
 class DocumentSegment {
 public:
