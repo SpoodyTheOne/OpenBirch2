@@ -4,6 +4,7 @@
 #include <QCloseEvent>
 #include <QFile>
 #include <QFileDialog>
+#include <QLabel>
 #include <QTabWidget>
 #include <QVBoxLayout>
 
@@ -12,10 +13,7 @@ Document::Document(QWidget *parent) : QWidget(parent), ui(new Ui::Document) {
 
   auto widget = ui->scrollAreaWidgetContents;
 
-  /// \todo: Remove SegmentType::TEXT, as the default (SegmentType::MATH) should
-  /// be used, but is unimplemented atm
-  ((QVBoxLayout *)widget->layout())
-      ->insertWidget(0, new DocumentLine(widget, SegmentType::TEXT));
+  ((QVBoxLayout *)widget->layout())->insertWidget(0, new DocumentLine(widget));
 }
 
 Document::~Document() { printf("Closed documentus :c\n"); };

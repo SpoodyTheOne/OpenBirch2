@@ -8,14 +8,8 @@ DocumentLine::DocumentLine(QWidget *parent, SegmentType type)
     : QWidget(parent), ui(new Ui::DocumentLine) {
   ui->setupUi(this);
 
-  DocumentSegment *segment = DocumentSegment::newFromType(type);
-
-  if (segment == nullptr) {
-    printf("Segment returned nullptr. Aborting\n");
-    abort();
-  }
-
-  ui->horizontalLayout->insertWidget(0, segment->getWidget());
+  addSegment(SegmentType::TEXT);
+  addSegment(SegmentType::MATH);
 
   printf("Added line :3\nType: %d", type);
 }
@@ -41,13 +35,19 @@ void DocumentLine::addSegment(SegmentType type, int index) {
 void DocumentLine::addSegment(DocumentSegment *segment, int index) {
   // If the index is negative we go backwards
   size_t idx = index;
-  if (idx < 0)
-    idx = m_Segments.size() - idx;
-  // clamp value so its not outside range
-  idx = std::min(idx, m_Segments.size() - 1);
+  if (m_Segments.size() == 0)
+    idx = 0;
+  else {
+    if (idx < 0)
+      idx = m_Segments.size() + idx;
+    // clamp value so its not outside range
+    idx = std::min(idx, m_Segments.size() - 1);
+  }
 
   // insert segment at position
   m_Segments.insert(m_Segments.begin() + idx, segment);
+
+  ui->horizontalLayout->insertWidget(idx, segment->getWidget());
 
   // Update can evaluate state
   testCanEvaluate();
@@ -72,4 +72,16 @@ void DocumentLine::testCanEvaluate() {
   }
 
   m_CanEvaluate = true;
+}
+
+/// Called by line segments when enter is pressed
+void DocumentLine::enterPressed() {
+  if (canEvaluate()) {
+    // Evaluate text
+    // Show output of evaluation on new line
+    // Create new documentline with a math segment underneath output and focus
+    // it
+  } else {
+    // Create new text line underneath
+  }
 }

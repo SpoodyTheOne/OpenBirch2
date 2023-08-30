@@ -13,6 +13,7 @@ qt_add_library(Gui STATIC
     documentsegment.cpp
     documentsegment.h
     textsegment.cpp
+    mathsegment.cpp
     
     obtabwidget.h
     obtabwidget.cpp

@@ -1,4 +1,5 @@
 #include "documentsegment.h"
+#include "mathsegment.h"
 #include "textsegment.h"
 
 DocumentSegment *DocumentSegment::newFromType(SegmentType type) {
@@ -7,10 +8,11 @@ DocumentSegment *DocumentSegment::newFromType(SegmentType type) {
     return new TextSegment();
     break;
   case MATH:
+    return new MathSegment();
+    break;
   case INVALID:
+  default:
     return nullptr;
     break;
   }
-
-  return nullptr;
 }

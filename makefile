@@ -1,11 +1,13 @@
-all: git-update
-	cmake --build build -j12
+all: git-update build-cmake
 	build/src/app/OpenBirch2
 
 gdb: build
 	gdb -ex run build/src/app/OpenBirch2 -q
 
-build:
+valgrind: build-cmake
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes build/src/app/OpenBirch2
+
+build-cmake:
 	cmake --build build -j12
 
 clean:

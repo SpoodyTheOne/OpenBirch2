@@ -22,6 +22,8 @@ public:
   
   bool canEvaluate();
 
+  void enterPressed();
+  
 private:
   void testCanEvaluate();
   
