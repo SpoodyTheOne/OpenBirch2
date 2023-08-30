@@ -80,11 +80,12 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     if (tab == nullptr)
       break;
 
-    if (tab->closeDocument() == false) {
+    if (tab->close() == false) {
       event->ignore();
       break;
     } else {
-      tabClose(0);
+      // tabClose(0);
+      ui->tabWidget->removeTab(0);
     }
   }
 
