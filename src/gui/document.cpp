@@ -12,7 +12,10 @@ Document::Document(QWidget *parent) : QWidget(parent), ui(new Ui::Document) {
 
   auto widget = ui->scrollAreaWidgetContents;
 
-  ((QVBoxLayout *)widget->layout())->insertWidget(0, new DocumentLine(widget));
+  /// \todo: Remove SegmentType::TEXT, as the default (SegmentType::MATH) should
+  /// be used, but is unimplemented atm
+  ((QVBoxLayout *)widget->layout())
+      ->insertWidget(0, new DocumentLine(widget, SegmentType::TEXT));
 }
 
 Document::~Document() { printf("Closed documentus :c\n"); };

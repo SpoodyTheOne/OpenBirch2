@@ -2,8 +2,8 @@
 #define DOCUMENTLINE_H
 
 #include "documentsegment.h"
-#include <QWidget>
 #include <QObject>
+#include <QWidget>
 
 namespace Ui {
 class DocumentLine;
@@ -13,15 +13,21 @@ class DocumentLine : public QWidget {
   Q_OBJECT;
 
 public:
-  explicit DocumentLine(QWidget *parent = nullptr, SegmentType type = SegmentType::MATH);
+  explicit DocumentLine(QWidget *parent = nullptr,
+                        SegmentType type = SegmentType::MATH);
   ~DocumentLine();
 
-  bool canEvaluate();
+  void addSegment(SegmentType type, int index = -1);
+  void addSegment(DocumentSegment* segment, int index = -1);
   
-private:
-  Ui::DocumentLine *ui{};
+  bool canEvaluate();
 
-  std::vector<DocumentSegment> m_Segments;
+private:
+  void testCanEvaluate();
+  
+  Ui::DocumentLine *ui{};
+  bool m_CanEvaluate = false;
+  std::vector<DocumentSegment *> m_Segments;
 };
 
 #endif
