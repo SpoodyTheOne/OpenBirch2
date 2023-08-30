@@ -14,10 +14,18 @@ public:
     return this->m_Children;
   };
 
+  /** Inserts a child at index.
+   * \todo: Check if this is actually useful
+   * @param index: index to insert at
+   * @param segment: the child to insert
+   */
   void insertChild(int index, DocumentSegment *segment) {
     m_Children.insert(m_Children.begin() + index, segment);
   };
 
+  /** Recursively deletes this segment and all its children
+   * @brief Call before removing
+   */
   void destroy() {
     for (DocumentSegment *c : m_Children) {
       c->destroy();
@@ -26,6 +34,11 @@ public:
     std::vector<DocumentSegment *>().swap(m_Children);
   };
 
+  /** Returns the text of this segment, and/or the combined text of all its
+   * children
+   * @brief The value of this segment as text
+   * @returns QString: The text that was within this segment
+   */
   virtual QString getText() {
     QString out = "";
 
@@ -35,8 +48,14 @@ public:
     return out;
   }
 
+  /** The type of segment this is
+   * @returns #SegmentType: either #TEXT, #MATH or #INVALID
+   */
   virtual SegmentType getType() = 0;
-  virtual QWidget* getWidget() = 0;
+  /** The QWidget that implements this segment
+   * @returns QWidget: the widget of the segment
+   */
+  virtual QWidget *getWidget() = 0;
 
   static DocumentSegment *newFromType(SegmentType type);
 
