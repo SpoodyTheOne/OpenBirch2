@@ -24,6 +24,8 @@ public:
 
   void enterPressed();
   
+  QString getText();
+  
 private:
   void testCanEvaluate();
   

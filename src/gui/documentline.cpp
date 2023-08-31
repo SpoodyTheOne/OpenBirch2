@@ -1,4 +1,6 @@
 #include "documentline.h"
+#include "../app/CAS/BirchCAS/BirchCAS.h"
+#include "../app/CAS/BirchCAS/lexer.h"
 #include "documentsegment.h"
 #include "ui_documentline.h"
 #include <algorithm>
@@ -74,9 +76,24 @@ void DocumentLine::testCanEvaluate() {
   m_CanEvaluate = true;
 }
 
+QString DocumentLine::getText() {
+  QString output = "";
+
+  for (auto c : m_Segments) {
+    output += c->getText();
+  }
+
+  return output;
+}
+
 /// Called by line segments when enter is pressed
 void DocumentLine::enterPressed() {
   if (canEvaluate()) {
+    CAS *cas = new BirchCas::BirchCas();
+    QString output;
+    cas->parse(getText(), &output);
+
+    
     // Evaluate text
     // Show output of evaluation on new line
     // Create new documentline with a math segment underneath output and focus

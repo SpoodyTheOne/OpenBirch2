@@ -7,11 +7,11 @@
 
 namespace BirchCas {
 
-class BirchCas : CAS {
+class BirchCas : public CAS {
 public:
   BirchCas();
 
-  CAS_ERROR parse(QString input, QString &output) override;
+  CAS_ERROR parse(QString input, QString *output) override;
 
 private:
   /** @brief Traverses &input and returns a new AST with the result

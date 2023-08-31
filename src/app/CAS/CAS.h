@@ -16,7 +16,7 @@ public:
   * @param output: The result of the input string
   * @returns #CAS_ERROR: If no problems occur, #None is returned
   */
-  virtual CAS_ERROR parse(QString input, QString &output) = 0;
+  virtual CAS_ERROR parse(QString input, QString *output) = 0;
 };
 
 #endif
