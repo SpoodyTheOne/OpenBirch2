@@ -14,6 +14,7 @@ public:
   virtual QString getText() const = 0;
   virtual QRect getSize(QPainter &painter,
                         const QPoint topleft = {0, 0}) const = 0;
+  // virtual QPoint nextDrawPos(const QPoint &pos, QPainter &painter) const = 0;
 
 private:
   std::vector<MathItem *> m_Children;

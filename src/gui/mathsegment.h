@@ -19,6 +19,10 @@ public:
   SegmentType getType() override;
   QWidget *getWidget() override;
 
+  QSize sizeHint() const override;
+
+  QPainter createPainter() ;
+  
 private:
   Ui::MathSegment *ui{};
 
@@ -26,7 +30,6 @@ private:
 
 protected:
   void paintEvent(QPaintEvent *event) override;
-  QSize sizeHint() const override;
 };
 
 #endif

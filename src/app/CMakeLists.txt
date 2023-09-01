@@ -1,4 +1,5 @@
 qt_add_executable(${PROJECT_NAME}
+    application.qrc
     main.cpp
 )
 
