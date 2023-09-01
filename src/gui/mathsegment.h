@@ -2,14 +2,14 @@
 #define MATHSEGMENT_H
 
 #include "documentsegment.h"
+#include "mathitem.h"
 #include <QWidget>
-#include <qlineedit.h>
 
 namespace Ui {
 class MathSegment;
 }
 
-class MathSegment : public QLineEdit, public DocumentSegment {
+class MathSegment : public QWidget, public DocumentSegment {
   Q_OBJECT;
 
 public:
@@ -21,6 +21,12 @@ public:
 
 private:
   Ui::MathSegment *ui{};
+
+  std::vector<MathItem *> m_Items;
+
+protected:
+  void paintEvent(QPaintEvent *event) override;
+  QSize sizeHint() const override;
 };
 
 #endif

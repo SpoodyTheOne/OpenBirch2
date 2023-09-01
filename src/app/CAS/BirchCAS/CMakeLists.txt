@@ -1,7 +1,7 @@
 qt_add_library(BirchCAS STATIC
   BirchCAS.cpp
   tokentypes.h
-  token.h
+  token.cpp
   lexer.cpp
   polynomial.h
 )

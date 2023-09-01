@@ -3,6 +3,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <QString>
 
 enum TokenType
 {
@@ -55,7 +56,7 @@ enum TokenType
     END_OF_FILE, // End Of File/input
 };
 
-const std::unordered_map<TokenType, std::string> tokenType2String{
+const std::unordered_map<TokenType, QString> tokenType2String{
     {TokenType::LPAREN, "Left Parenthesis"},
     {TokenType::RPAREN, "Right Parenthesis"},
     {TokenType::COMMA, "Comma"},
