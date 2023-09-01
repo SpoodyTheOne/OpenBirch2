@@ -1,5 +1,6 @@
 #include "mathsegment.h"
 #include "documentsegment.h"
+#include "mathitem.h"
 #include <QFile>
 #include <QFontDatabase>
 #include <qapplication.h>
@@ -11,6 +12,18 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
   setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
   m_Items.push_back(new StringMathItem("2x test"));
+  m_Items.push_back(new StringMathItem("   "));
+
+  auto top = new StringMathItem("2x");
+  auto bottom = new StringMathItem("IT FUCKING WORKS");
+  auto fraction = new FractionMathItem(top, bottom);
+  m_Items.push_back(fraction);
+
+  auto top2 = new FractionMathItem(new StringMathItem("pee pee"),
+                                   new StringMathItem("62 fb"));
+  auto bottom2 = new StringMathItem("69x+420y");
+
+  m_Items.push_back(new FractionMathItem(bottom2, top2));
 };
 
 QString MathSegment::getText() {
@@ -45,7 +58,7 @@ QSize MathSegment::sizeHint() const {
     currentPos = size.topLeft();
   }
 
-  printf("i calculated %d size width\n", width);
+  // printf("i calculated %d size width\n", width);
 
   return QSize(width, height + 8);
 }
@@ -69,19 +82,22 @@ QPainter *MathSegment::createPainter() {
 
   QPalette palette = QApplication::palette();
 
-  painter->setRenderHint(QPainter::Antialiasing);
+  // painter->setRenderHint(QPainter::Antialiasing);
   painter->setPen(palette.text().color());
   painter->setBrush(palette.text());
 
   painter->setFont(getFont());
 
-  printf("font in use: %s\n",
-         painter->fontInfo().family().toStdString().c_str());
+  // printf("font in use: %s\n",
+  //        painter->fontInfo().family().toStdString().c_str());
 
   // printf("Text palette: %s\n",
   // palette.text().color().toRgb().name().toStdString().c_str());
 
-  painter->setBackground(palette.base().color());
+  // painter->setBackground(Qt::green);
+  // painter->setBackgroundMode(Qt::BGMode::OpaqueMode);
+
+  // painter->fillRect(0, 0, 1000, 1000, Qt::darkGreen);
 
   return painter;
 }

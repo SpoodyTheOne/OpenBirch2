@@ -10,7 +10,7 @@ DocumentLine::DocumentLine(QWidget *parent, SegmentType type)
     : QWidget(parent), ui(new Ui::DocumentLine) {
   ui->setupUi(this);
 
-  addSegment(SegmentType::TEXT);
+  // addSegment(SegmentType::TEXT);
   addSegment(SegmentType::MATH);
 
   printf("Added line :3\nType: %d", type);
