@@ -21,8 +21,10 @@ public:
 
   QSize sizeHint() const override;
 
-  QPainter createPainter() ;
-  
+  QPainter *createPainter();
+
+  QFont getFont() const;
+
 private:
   Ui::MathSegment *ui{};
 

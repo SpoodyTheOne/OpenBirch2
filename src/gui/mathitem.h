@@ -12,8 +12,7 @@ class MathItem {
 public:
   virtual QPoint draw(const QPoint &pos, QPainter &painter) const = 0;
   virtual QString getText() const = 0;
-  virtual QRect getSize(QPainter &painter,
-                        const QPoint topleft = {0, 0}) const = 0;
+  virtual QRect getSize(QFont font, const QPoint topleft = {0, 0}) const = 0;
   // virtual QPoint nextDrawPos(const QPoint &pos, QPainter &painter) const = 0;
 
 private:
@@ -25,16 +24,18 @@ public:
   explicit StringMathItem(QString value) : m_Value(value) {}
 
   QPoint draw(const QPoint &pos, QPainter &painter) const override {
-    QRect size = getSize(painter, pos);
+    QRect size = getSize(painter.font(), pos);
     painter.drawText(size.bottomLeft(), m_Value);
     return size.topRight();
   }
 
-  QRect getSize(QPainter &painter, const QPoint topleft) const override {
-    int width = painter.fontMetrics().horizontalAdvance(m_Value);
-    int height = painter.fontMetrics().height();
+  QRect getSize(QFont font, const QPoint topleft) const override {
+    QFontMetrics metrics(font);
 
-    return QRect(topleft.x(), topleft.y(), width, height);
+    int width = metrics.horizontalAdvance(m_Value);
+    int height = metrics.height();
+
+    return QRect(topleft.x(), topleft.y() + 1,  width, height);
   }
 
   QString getText() const override { return m_Value; }

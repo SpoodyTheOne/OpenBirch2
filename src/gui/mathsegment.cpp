@@ -32,12 +32,10 @@ QSize MathSegment::sizeHint() const {
   int width = 0;
 
   /// \todo fix bad cvr (it wont run until fixed)
-  QPainter painter = createPainter();
-
   QPoint currentPos = QPoint(0, 0);
 
   for (MathItem *item : m_Items) {
-    QRect size = item->getSize(painter, currentPos);
+    QRect size = item->getSize(getFont(), currentPos);
 
     if (height < size.height())
       height = size.height();
@@ -53,27 +51,42 @@ QSize MathSegment::sizeHint() const {
 }
 
 void MathSegment::paintEvent(QPaintEvent *event) {
-  QPainter painter = createPainter();
+  QPainter *painter = createPainter();
 
   QPoint currentPos = QPoint(0, 0);
 
   for (MathItem *item : m_Items) {
-    currentPos = item->draw(currentPos, painter);
+    currentPos = item->draw(currentPos, *painter);
   }
 
+  delete painter;
   updateGeometry();
 }
 
-QPainter MathSegment::createPainter() {
-  QPainter painter;
-  painter.begin(this);
+QPainter *MathSegment::createPainter() {
+  QPainter *painter = new QPainter();
+  painter->begin(this);
 
   QPalette palette = QApplication::palette();
 
-  painter.setRenderHint(QPainter::Antialiasing);
-  painter.setPen(palette.text().color());
-  painter.setBrush(palette.text());
+  painter->setRenderHint(QPainter::Antialiasing);
+  painter->setPen(palette.text().color());
+  painter->setBrush(palette.text());
 
+  painter->setFont(getFont());
+
+  printf("font in use: %s\n",
+         painter->fontInfo().family().toStdString().c_str());
+
+  // printf("Text palette: %s\n",
+  // palette.text().color().toRgb().name().toStdString().c_str());
+
+  painter->setBackground(palette.base().color());
+
+  return painter;
+}
+
+QFont MathSegment::getFont() const {
   QFile fontFile(":/res/fonts/XITSMath-Regular.otf");
 
   if (fontFile.open(QIODevice::ReadOnly) == false) {
@@ -87,16 +100,8 @@ QPainter MathSegment::createPainter() {
     } else {
       QFont font = QFontDatabase::applicationFontFamilies(fontID).first();
       font.setItalic(true);
-      font.setPointSize(14);
-      painter.setFont(font);
+      font.setPointSize(12);
+      return font;
     }
   }
-
-  printf("font in use: %s\n",
-         painter.fontInfo().family().toStdString().c_str());
-
-  // printf("Text palette: %s\n",
-  // palette.text().color().toRgb().name().toStdString().c_str());
-
-  painter.setBackground(palette.base().color());
 }
