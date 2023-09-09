@@ -12,7 +12,6 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
   setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
   m_Items.push_back(new StringMathItem("2x test"));
-  m_Items.push_back(new StringMathItem("   "));
 
   auto top = new StringMathItem("2x");
   auto bottom = new StringMathItem("IT FUCKING WORKS");
@@ -23,7 +22,7 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
                                    new StringMathItem("62 fb"));
   auto bottom2 = new StringMathItem("69x+420y");
 
-  m_Items.push_back(new FractionMathItem(bottom2, top2));
+  m_Items.push_back(new FractionMathItem(new FractionMathItem(bottom2, top2), new StringMathItem("pp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doo")));
 };
 
 QString MathSegment::getText() {
