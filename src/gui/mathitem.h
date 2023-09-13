@@ -72,7 +72,7 @@ public:
 
     int height = bottomHeight + topHeight;
 
-    auto r = QRect(topleft.x() + 2, topleft.y(), width, height);
+    auto r = QRect(topleft.x() + 4, topleft.y(), width + 8, height);
 
     printf("size: %d, %d\n", r.width(), r.height());
     return r;
