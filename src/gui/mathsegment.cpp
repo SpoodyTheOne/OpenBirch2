@@ -11,19 +11,21 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
   setFocusPolicy(Qt::StrongFocus);
   setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-  m_Items.push_back(new StringMathItem("2x test"));
+  // m_Items.push_back(new StringMathItem("2x test"));
 
   auto top = new StringMathItem("2x");
   auto bottom = new StringMathItem("IT FUCKING WORKS");
   auto fraction = new FractionMathItem(top, bottom);
-  m_Items.push_back(fraction);
+  // m_Items.push_back(fraction);
 
   auto top2 = new FractionMathItem(new StringMathItem("pee pee"),
                                    new StringMathItem("62 fb"));
   auto bottom2 = new StringMathItem("69x+420y");
 
-  m_Items.push_back(new FractionMathItem(new FractionMathItem(bottom2, top2),
-                                         new StringMathItem("penis")));
+  // m_Items.push_back(new FractionMathItem(new FractionMathItem(bottom2, top2),
+                                         // new StringMathItem("penis")));
+  auto root = new NRootMathItem(new StringMathItem("3"), new FractionMathItem(new StringMathItem("pee"), new StringMathItem("poo")));
+  m_Items.push_back(root);
 };
 
 QString MathSegment::getText() {
