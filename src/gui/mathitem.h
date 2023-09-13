@@ -1,6 +1,7 @@
 #ifndef MATHITEM_H
 #define MATHITEM_H
 
+#include <QMouseEvent>
 #include <QPainter>
 #include <QString>
 #include <qpoint.h>
@@ -28,6 +29,8 @@ public:
   */
   virtual QRect getSize(QFont font, const QPoint topleft = {0, 0}) const = 0;
   // virtual QPoint nextDrawPos(const QPoint &pos, QPainter &painter) const = 0;
+
+  void clickEvent(QMouseEvent event){};
 };
 
 class StringMathItem : public MathItem {

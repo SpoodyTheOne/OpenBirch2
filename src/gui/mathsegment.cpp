@@ -69,16 +69,16 @@ void MathSegment::paintEvent(QPaintEvent *event) {
   QPoint currentPos = QPoint(0, 0);
 
   QSize size = sizeHint();
-  
+
   for (MathItem *item : m_Items) {
     QRect itemSize = item->getSize(getFont());
 
     if (itemSize.height() < size.height()) {
       // Offset Y position by height/2 - half of item height
-      int offset = size.height()/2 - itemSize.height()/2;
+      int offset = size.height() / 2 - itemSize.height() / 2;
       currentPos.setY(offset);
     }
-    
+
     currentPos = item->draw(currentPos, *painter);
   }
 
@@ -135,4 +135,8 @@ QFont MathSegment::getFont() const {
   font.setItalic(true);
   font.setPointSize(12);
   return font;
+}
+
+void MathSegment::mousePressEvent(QMouseEvent *event) {
+  QWidget::mousePressEvent(event);
 }
