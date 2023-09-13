@@ -25,6 +25,8 @@ public:
 
   QFont getFont() const;
 
+  static inline int MathFontID = -1;
+
 private:
   Ui::MathSegment *ui{};
 

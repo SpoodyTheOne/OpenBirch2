@@ -103,21 +103,26 @@ QPainter *MathSegment::createPainter() {
 }
 
 QFont MathSegment::getFont() const {
-  QFile fontFile(":/res/fonts/XITSMath-Regular.otf");
+  if (MathSegment::MathFontID == -1) {
+    QFile fontFile(":/res/fonts/XITSMath-Regular.otf");
 
-  if (fontFile.open(QIODevice::ReadOnly) == false) {
-    printf("Cant open file\n");
-    abort();
-  } else {
-    int fontID = QFontDatabase::addApplicationFontFromData(fontFile.readAll());
-    if (fontID == -1) {
+    if (fontFile.open(QIODevice::ReadOnly) == false) {
+      printf("Failed to open math font file\n");
+      abort();
+    }
+
+    MathSegment::MathFontID =
+        QFontDatabase::addApplicationFontFromData(fontFile.readAll());
+
+    if (MathSegment::MathFontID == -1) {
       printf("Error adding font to database");
       abort();
-    } else {
-      QFont font = QFontDatabase::applicationFontFamilies(fontID).first();
-      font.setItalic(true);
-      font.setPointSize(12);
-      return font;
     }
   }
+
+  QFont font =
+      QFontDatabase::applicationFontFamilies(MathSegment::MathFontID).first();
+  font.setItalic(true);
+  font.setPointSize(12);
+  return font;
 }
