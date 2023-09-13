@@ -44,7 +44,7 @@ QSize MathSegment::sizeHint() const {
   int height = 0;
   int width = 0;
 
-  /// \todo fix bad cvr (it wont run until fixed)
+  /// TODO: fix bad cvr (it wont run until fixed)
   QPoint currentPos = QPoint(0, 0);
 
   for (MathItem *item : m_Items) {
