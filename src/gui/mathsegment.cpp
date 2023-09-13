@@ -22,7 +22,8 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
                                    new StringMathItem("62 fb"));
   auto bottom2 = new StringMathItem("69x+420y");
 
-  m_Items.push_back(new FractionMathItem(new FractionMathItem(bottom2, top2), new StringMathItem("pp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doopp doo doo")));
+  m_Items.push_back(new FractionMathItem(new FractionMathItem(bottom2, top2),
+                                         new StringMathItem("penis")));
 };
 
 QString MathSegment::getText() {
