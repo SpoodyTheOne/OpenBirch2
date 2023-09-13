@@ -133,7 +133,7 @@ void Lexer::scanToken() {
       // Identifiers
       lexIdentifier();
     } else {
-      /// \todo custom lexer exception
+      /// TODO: custom lexer exception
       throw std::runtime_error("Unexpected character");
     }
   }
