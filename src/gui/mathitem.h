@@ -96,7 +96,7 @@ public:
                pos.y()),
         painter);
 
-    painter.drawLine(pos.x() + 1, yMiddle, pos.x() + size.width(), yMiddle);
+    painter.drawLine(pos.x() + 4, yMiddle, pos.x() + size.width() - 4, yMiddle);
 
     m_Bottom->draw(
         QPoint(pos.x() + middle - m_Bottom->getSize(painter.font()).width() / 2,

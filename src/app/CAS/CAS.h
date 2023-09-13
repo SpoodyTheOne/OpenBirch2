@@ -7,7 +7,7 @@ enum CAS_ERROR { None, SyntaxError, InternalError, LoopError };
 
 class CAS {
 public:
-  /// \todo Add dependency injected "Worksheet"/"Document" interface that is used
+  /// TODO: Add dependency injected "Worksheet"/"Document" interface that is used
   /// for output
 
   /** 

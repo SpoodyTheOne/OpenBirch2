@@ -18,6 +18,7 @@ Document::Document(QWidget *parent) : QWidget(parent), ui(new Ui::Document) {
 
 Document::~Document() { printf("Closed documentus :c\n"); };
 
+// \bug: Closes regardless of option picked
 void Document::closeEvent(QCloseEvent *event) {
   bool shouldClose = this->closeDocument();
 
