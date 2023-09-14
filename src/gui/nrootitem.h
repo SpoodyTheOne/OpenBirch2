@@ -48,8 +48,8 @@ public:
     QRect valueSize = m_Value->getSize(font, newPos);
     QRect boundingBox = getSize(font, newPos);
 
-    QPoint diagonalBarIntersection =
-        newPos + QPoint(rootSize.width() + LEFT_PAD, 0);
+    QPointF diagonalBarIntersection =
+        newPos + QPointF(rootSize.width() + LEFT_PAD, -0.5);
     QPoint bottomCorner = newPos + QPoint(LEFT_PAD, boundingBox.height());
     QPoint footIntersection = bottomCorner - QPoint(LEFT_PAD, FOOT_HEIGHT);
 
@@ -74,7 +74,9 @@ public:
     // Line under root
     painter.drawLine(rootPoint + QPoint(-rootSize.width(), 3), rootPoint);
 
-    m_Value->draw(diagonalBarIntersection + QPoint(VALUE_PADDING, 0), painter);
+    m_Value->draw(
+        (diagonalBarIntersection + QPoint(VALUE_PADDING, 0)).toPoint(),
+        painter);
 
     if (m_Root->getText() != "2") {
       painter.setFont(rootFont);

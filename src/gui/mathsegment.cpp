@@ -17,7 +17,7 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
   auto top = new StringMathItem("2x");
   auto bottom = new StringMathItem("IT FUCKING WORKS");
   auto fraction = new FractionMathItem(top, bottom);
-  // m_Items.push_back(fraction);
+  m_Items.push_back(fraction);
 
   auto top2 = new FractionMathItem(new StringMathItem("pee pee"),
                                    new StringMathItem("62 fb"));
@@ -98,6 +98,7 @@ void MathSegment::paintEvent(QPaintEvent *event) {
 QPainter *MathSegment::createPainter() {
   QPainter *painter = new QPainter();
   painter->begin(this);
+  painter->setRenderHints(QPainter::Antialiasing);
 
   QPalette palette = QApplication::palette();
 
