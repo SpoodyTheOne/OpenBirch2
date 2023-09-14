@@ -23,7 +23,8 @@ public:
 
   QPainter *createPainter();
 
-  QFont getFont() const;
+  static QFont getFont();
+  static QFont getSubscriptFont();
 
   static inline int MathFontID = -1;
 

@@ -1,6 +1,7 @@
 #include "mathsegment.h"
 #include "documentsegment.h"
 #include "mathitem.h"
+#include "nrootitem.h"
 #include <QFile>
 #include <QFontDatabase>
 #include <qapplication.h>
@@ -11,7 +12,7 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
   setFocusPolicy(Qt::StrongFocus);
   setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-  // m_Items.push_back(new StringMathItem("2x test"));
+  m_Items.push_back(new StringMathItem("2x test"));
 
   auto top = new StringMathItem("2x");
   auto bottom = new StringMathItem("IT FUCKING WORKS");
@@ -23,8 +24,10 @@ MathSegment::MathSegment(QWidget *parent) : QWidget(parent) {
   auto bottom2 = new StringMathItem("69x+420y");
 
   // m_Items.push_back(new FractionMathItem(new FractionMathItem(bottom2, top2),
-                                         // new StringMathItem("penis")));
-  auto root = new NRootMathItem(new StringMathItem("3"), new FractionMathItem(new StringMathItem("pee"), new StringMathItem("poo")));
+  //                                        new StringMathItem("penis")));
+
+  auto root =
+      new NRootMathItem(new StringMathItem("3"), new StringMathItem("64"));
   m_Items.push_back(root);
 };
 
@@ -72,6 +75,10 @@ void MathSegment::paintEvent(QPaintEvent *event) {
 
   QSize size = sizeHint();
 
+  // Debug, uncomment to see bounding boxes of draw calls
+  // painter->setBackgroundMode(Qt::BGMode::OpaqueMode);
+  // painter->setBackground(Qt::green);
+
   for (MathItem *item : m_Items) {
     QRect itemSize = item->getSize(getFont());
 
@@ -114,7 +121,7 @@ QPainter *MathSegment::createPainter() {
   return painter;
 }
 
-QFont MathSegment::getFont() const {
+QFont MathSegment::getFont() {
   if (MathSegment::MathFontID == -1) {
     QFile fontFile(":/res/fonts/XITSMath-Regular.otf");
 
@@ -141,4 +148,12 @@ QFont MathSegment::getFont() const {
 
 void MathSegment::mousePressEvent(QMouseEvent *event) {
   QWidget::mousePressEvent(event);
+}
+
+QFont MathSegment::getSubscriptFont() {
+  QFont font = getFont();
+
+  font.setPointSize(10);
+
+  return font;
 }
