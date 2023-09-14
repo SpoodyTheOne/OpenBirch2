@@ -87,7 +87,7 @@ public:
 
   QPoint draw(const QPoint &pos, QPainter &painter) const override {
     QRect size = getSize(painter.font(), pos);
-    int middle = size.width() / 2;
+    int middle = size.width() / 2 + 4;
     int yMiddle = pos.y() + m_Top->getSize(painter.font()).height() + 2;
 
     // Draw top
@@ -97,7 +97,7 @@ public:
         painter);
 
     painter.setRenderHint(QPainter::Antialiasing, false);
-    painter.drawLine(pos.x() + 4, yMiddle, pos.x() + size.width() - 4, yMiddle);
+    painter.drawLine(pos.x() + 8, yMiddle, pos.x() + size.width() - 0, yMiddle);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
     m_Bottom->draw(
